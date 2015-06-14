@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+
+    <!--<bean id="duke"-->
+    <!--class="com.springinaction.springidol.Juggler"/>-->
+
+    <bean id="duke"
+          class="com.springinaction.springidol.Juggler">
+        <constructor-arg value="15"/>
+    </bean>
+
+
+    <bean id="poeticDuke"
+          class="com.springinaction.springidol.PoeticJuggler">
+        <constructor-arg value="15"/>
+        <constructor-arg ref="sonnet29"/>
+    </bean>
+
+    <bean id="sonnet29"
+          class="com.springinaction.springidol.Sonnet29"/>
+
+    <bean id="theStage"
+          class="com.springinaction.springidol.Stage"
+          factory-method="getInstance"/>
+
+
+    <bean id="saxophone"
+          class="com.springinaction.springidol.Saxophone"/>
+
+    <bean id="piano"
+          class="com.springinaction.springidol.Piano"/>
+
+    <bean id="kenny"
+          class="com.springinaction.springidol.Instrumentalist">
+        <property name="song" value="Jingle Bells"/>
+        <property name="instrument" ref="saxophone"/>
+    </bean>
+
+    <bean id="david"
+          class="com.springinaction.springidol.Instrumentalist">
+        <property name="song" value="Jingle Bells"/>
+        <property name="instrument" ref="saxophone"/>
+    </bean>
+
+    <bean id="harry"
+          class="com.springinaction.springidol.Magician">
+        <property name="magicBox" ref="magicBox"/>
+        <property name="magicWords" value="Bippity boppity boo"/>
+    </bean>
+
+    <!--<bean id="magicBox"-->
+          <!--class="com.springinaction.springidol.MagicBoxImpl"/>-->
+
+    <bean id="magicBox"
+          class="com.springinaction.springidol.MagicBoxImpl">
+        <replaced-method
+                name="getContents"
+                replacer="tigerReplacer" />
+    </bean>
+    <bean id="tigerReplacer"
+          class="com.springinaction.springidol.TigerReplacer" />
+
+</beans>
